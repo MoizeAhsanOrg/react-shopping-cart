@@ -1,8 +1,7 @@
-import { User } from "../../types/User";
-import { users } from "./data/users";
+import { User } from '../../types/User';
+import { users } from './data/users';
 
 export const authenticateUser = (username: string, password: string): User | null => {
-    console.log("here")
-    const user =  users.find(user => user.username === username && user.password === password) || null;
-    return user;
+  const user = users.find(user => user.username === username && user.password === password) || null;
+  return user;
 };

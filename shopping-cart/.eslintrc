@@ -1,0 +1,46 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "@typescript-eslint"
+    ],
+    "rules": {
+        "indent": [
+            "error",
+            2
+        ], // Matches indent_size for TypeScript and JavaScript files
+        "linebreak-style": [
+            "error",
+            "unix"
+        ], // Matches end_of_line
+        "quotes": [
+            "error",
+            "single"
+        ], // Example rule, adjust as needed
+        "semi": [
+            "error",
+            "always"
+        ], // Example rule, adjust as needed
+        "max-len": [
+            "error",
+            {
+                "code": 100
+            }
+        ], // Matches max_line_length
+        "eol-last": [
+            "error",
+            "always"
+        ] // Matches insert_final_newline
+    }
+}

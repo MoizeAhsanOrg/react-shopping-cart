@@ -8,38 +8,38 @@ import { Item } from '../types/Item';
 import { Card, Button, Row, Col } from 'react-bootstrap';
 
 const Store: React.FC = () => {
-    const items = useSelector((state: RootState) => state.inventory.items);
-    const dispatch: AppDispatch = useDispatch();
+  const items = useSelector((state: RootState) => state.inventory.items);
+  const dispatch: AppDispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(fetchItems());
-    }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchItems());
+  }, [dispatch]);
 
-    const handleAddToCart = (item: Item) => {
-        dispatch(addToCart(item));
-        dispatch(updateStock({ id: item.id, quantity: 1 }));
-    };
+  const handleAddToCart = (item: Item) => {
+    dispatch(addToCart(item));
+    dispatch(updateStock({ id: item.id, quantity: 1 }));
+  };
 
-    return (
-        <div>
-            <h1>Available Items</h1>
-            <Row>
-                {items.map((item: Item) => (
-                    <Col key={item.id} sm={12} md={6} lg={4} xl={3}>
-                        <Card className="mb-4">
-                            <Card.Body>
-                                <Card.Title>{item.name}</Card.Title>
-                                <Card.Text>Category: {item.category}</Card.Text>
-                                <Card.Text>Price: ${item.price}</Card.Text>
-                                <Card.Text>Stock: {item.stock}</Card.Text>
-                                <Button variant="primary" onClick={() => handleAddToCart(item)}>Add to Cart</Button>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                ))}
-            </Row>
-        </div>
-    );
+  return (
+    <div>
+      <h1>Available Items</h1>
+      <Row>
+        {items.map((item: Item) => (
+          <Col key={item.id} sm={12} md={6} lg={4} xl={3}>
+            <Card className="mb-4">
+              <Card.Body>
+                <Card.Title>{item.name}</Card.Title>
+                <Card.Text>Category: {item.category}</Card.Text>
+                <Card.Text>Price: ${item.price}</Card.Text>
+                <Card.Text>Stock: {item.stock}</Card.Text>
+                <Button variant="primary" onClick={() => handleAddToCart(item)}>Add to Cart</Button>
+              </Card.Body>
+            </Card>
+          </Col>
+        ))}
+      </Row>
+    </div>
+  );
 };
 
 export default Store;

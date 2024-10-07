@@ -5,18 +5,18 @@ interface SalesState {
 }
 
 const initialState: SalesState = {
-    salesData: {},
+  salesData: {},
 };
 
 const salesSlice = createSlice({
-    name: 'sales',
-    initialState,
-    reducers: {
-        updateSales(state, action: PayloadAction<{ category: string; quantity: number }>) {
-            const { category, quantity } = action.payload;
-            state.salesData[category] = (state.salesData[category] || 0) + quantity;
-        },
+  name: 'sales',
+  initialState,
+  reducers: {
+    updateSales(state, action: PayloadAction<{ category: string; quantity: number }>) {
+      const { category, quantity } = action.payload;
+      state.salesData[category] = (state.salesData[category] || 0) + quantity;
     },
+  },
 });
 
 export const { updateSales } = salesSlice.actions;

@@ -11,6 +11,7 @@ insert_final_newline = true
 # 4 space indentation
 indent_style = space
 indent_size = 4
+max_line_length = 80
 
 # Set default charset
 charset = utf-8
@@ -19,23 +20,10 @@ charset = utf-8
 [*.{ts,tsx,js,jsx}]
 indent_style = space
 indent_size = 2
+max_line_length = 80
 
 # Match JSON files
 [*.json]
 indent_style = space
 indent_size = 2
-
-# Match CSS files
-[*.css]
-indent_style = space
-indent_size = 2
-
-# Match Markdown files
-[*.md]
-max_line_length = off
-trim_trailing_whitespace = false
-
-# Match HTML files
-[*.html]
-indent_style = space
-indent_size = 2
+max_line_length = 100
