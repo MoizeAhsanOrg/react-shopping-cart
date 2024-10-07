@@ -22,7 +22,11 @@ const Inventory: React.FC = () => {
   });
 
   useEffect(() => {
-    dispatch(fetchItems());
+    const fetchData = async () => {
+      await dispatch(fetchItems());
+    };
+
+    fetchData();
   }, [dispatch]);
 
   const handleAdd = () => {
