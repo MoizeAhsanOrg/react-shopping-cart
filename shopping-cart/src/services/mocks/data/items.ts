@@ -7,7 +7,7 @@ export const items: Item[] = [
     price: 10.0,
     category: 'Category 1',
     stock: 100,
-    quantity: 10
+    quantity: 150
   },
   {
     id: 2,
@@ -15,6 +15,6 @@ export const items: Item[] = [
     price: 20.0,
     category: 'Category 2',
     stock: 50,
-    quantity: 45
+    quantity: 50
   },
 ];

@@ -1,12 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Item } from '../../types/Item';
+import { items } from '../../services/mocks/data/items';
 
 interface InventoryState {
     items: Item[];
 }
 
 const initialState: InventoryState = {
-  items: [],
+  items: items,
 };
 
 const inventorySlice = createSlice({

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { 
   Chart as ChartJS, 
@@ -9,26 +9,24 @@ import {
   Tooltip, 
   Legend 
 } from 'chart.js';
+import { getSalesData } from '../services/mocks/salesService';
+import { Sales } from '../types/Sales';
 
 // Register necessary components for Chart.js
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const SalesChart: React.FC = () => {
-  // Dummy sales data
-  const salesData = {
-    'January': 30,
-    'February': 20,
-    'March': 50,
-    'April': 40,
-    'May': 60,
-    'June': 70,
-    'July': 80,
-    'August': 90,
-    'September': 100,
-    'October': 110,
-    'November': 120,
-    'December': 130,
-  };
+  //load sales data from service
+  const [salesData, setSalesData] = useState<Sales>({});
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getSalesData();
+      setSalesData(data);
+    };
+
+    fetchData();
+  }, []);
 
   const data = {
     labels: Object.keys(salesData),
