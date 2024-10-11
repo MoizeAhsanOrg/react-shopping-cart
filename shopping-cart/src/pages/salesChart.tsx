@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { 
   Chart as ChartJS, 
@@ -9,24 +9,20 @@ import {
   Tooltip, 
   Legend 
 } from 'chart.js';
-import { getSalesData } from '../services/mocks/salesService';
-import { Sales } from '../types/Sales';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchSalesData } from '../redux/thunks/salesThunks';
+import { AppDispatch, RootState } from '../redux/store';
 
 // Register necessary components for Chart.js
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const SalesChart: React.FC = () => {
-  //load sales data from service
-  const [salesData, setSalesData] = useState<Sales>({});
+  const dispatch: AppDispatch = useDispatch();
+  const salesData = useSelector((state: RootState) => state.sales.salesData);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const data = await getSalesData();
-      setSalesData(data);
-    };
-
-    fetchData();
-  }, []);
+    dispatch(fetchSalesData());
+  }, [dispatch]);
 
   const data = {
     labels: Object.keys(salesData),
