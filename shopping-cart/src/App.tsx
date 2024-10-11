@@ -12,7 +12,7 @@ import UserProfile from './pages/UserProfile';
 import Welcome from './pages/Welcome';
 import Store from './pages/Store';
 import Header from './components/Header';
-import { User } from './types/User';
+import PrivateRoute from './components/PrivateRoute';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App: React.FC = () => {
@@ -34,17 +34,18 @@ const App: React.FC = () => {
         <Route path="/login" element={<Login />} />
         <Route
           path="/inventory"
-          element={<PrivateRoute component={Inventory} role="admin" user={user} />}
+          element={<PrivateRoute component={Inventory} roles={['admin']} user={user} />}
         />
-        <Route 
+        <Route
           path="/cart"
-          element={<PrivateRoute component={Cart} role="customer" user={user} />} />
-        <Route 
+          element={<PrivateRoute component={Cart} roles={['customer']} user={user} />} />
+        <Route
           path="/sales-chart"
-          element={<PrivateRoute component={SalesChart} role="admin" user={user} />} />
-        <Route 
+          element={<PrivateRoute component={SalesChart} roles={['admin']} user={user} />} />
+        <Route
           path="/profile"
-          element={<PrivateRoute component={UserProfile} role="customer" user={user} />} />
+          element={<PrivateRoute component={UserProfile}
+            roles={['customer', 'admin']} user={user} />} />
         <Route path="/" element={homePageElement} />
         <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
@@ -52,25 +53,5 @@ const App: React.FC = () => {
   );
 };
 
-interface PrivateRouteProps {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  component: React.ComponentType<any>;
-  role: 'admin' | 'customer';
-  user: User | null;
-}
-
-const PrivateRoute: React.FC<PrivateRouteProps> = (
-  { 
-    component: Component,
-    role,
-    user,
-    ...rest
-  }) => {
-  return user && user.role === role ? (
-    <Component {...rest} user={user} />
-  ) : (
-    <Navigate to="/login" />
-  );
-};
 
 export default App;
