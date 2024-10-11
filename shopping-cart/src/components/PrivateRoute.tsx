@@ -1,20 +1,25 @@
 import React from 'react';
 import { Route, Navigate } from 'react-router-dom';
+import { User } from '../types/User';
 
 interface PrivateRouteProps extends Omit<typeof Route, 'element'> {
-    element: React.ComponentType;
-    role: string;
-    user: { role: string } | null;
-    path: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  component: React.ComponentType<any>;
+  roles: string[];
+  user: User | null;
 }
 
-const PrivateRoute: React.FC<PrivateRouteProps> = ({ element: Component, role, user, ...rest }) => {
-  return (
-    <Route
-      {...rest}
-      element={user && user.role === role ? <Component /> : <Navigate to="/login" />}
-    />
+const PrivateRoute: React.FC<PrivateRouteProps> = (
+  {
+    component: Component,
+    roles,
+    user,
+    ...rest
+  }) => {
+  return user && roles.includes(user.role) ? (
+    <Component {...rest} user={user} />
+  ) : (
+    <Navigate to="/login" />
   );
 };
-
 export default PrivateRoute;
