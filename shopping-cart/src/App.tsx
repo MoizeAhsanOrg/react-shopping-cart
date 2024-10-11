@@ -32,10 +32,19 @@ const App: React.FC = () => {
       <Header />
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/inventory" element={<PrivateRoute component={Inventory} role="admin" user={user} />} />
-        <Route path="/cart" element={<PrivateRoute component={Cart} role="customer" user={user} />} />
-        <Route path="/sales-chart" element={<PrivateRoute component={SalesChart} role="admin" user={user} />} />
-        <Route path="/profile" element={<PrivateRoute component={UserProfile} role="customer" user={user} />} />
+        <Route
+          path="/inventory"
+          element={<PrivateRoute component={Inventory} role="admin" user={user} />}
+        />
+        <Route 
+          path="/cart"
+          element={<PrivateRoute component={Cart} role="customer" user={user} />} />
+        <Route 
+          path="/sales-chart"
+          element={<PrivateRoute component={SalesChart} role="admin" user={user} />} />
+        <Route 
+          path="/profile"
+          element={<PrivateRoute component={UserProfile} role="customer" user={user} />} />
         <Route path="/" element={homePageElement} />
         <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
@@ -44,13 +53,24 @@ const App: React.FC = () => {
 };
 
 interface PrivateRouteProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   component: React.ComponentType<any>;
   role: 'admin' | 'customer';
   user: User | null;
 }
 
-const PrivateRoute: React.FC<PrivateRouteProps> = ({ component: Component, role, user, ...rest }) => {
-  return user && user.role === role ? <Component {...rest} user={user} /> : <Navigate to="/login" />;
+const PrivateRoute: React.FC<PrivateRouteProps> = (
+  { 
+    component: Component,
+    role,
+    user,
+    ...rest
+  }) => {
+  return user && user.role === role ? (
+    <Component {...rest} user={user} />
+  ) : (
+    <Navigate to="/login" />
+  );
 };
 
 export default App;

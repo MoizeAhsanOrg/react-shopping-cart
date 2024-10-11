@@ -8,14 +8,14 @@ import { thunk } from 'redux-thunk';
 // Import other reducers
 
 export const store = configureStore({
-    reducer: {
-        auth: authReducer,
-        cart: cartReducer,
-        inventory: inventoryReducer,
-        sales: salesReducer,
-        // Add other reducers here
-    },
-    middleware: getDefaultMiddleware => getDefaultMiddleware().concat(thunk),
+  reducer: {
+    auth: authReducer,
+    cart: cartReducer,
+    inventory: inventoryReducer,
+    sales: salesReducer,
+    // Add other reducers here
+  },
+  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(thunk),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
