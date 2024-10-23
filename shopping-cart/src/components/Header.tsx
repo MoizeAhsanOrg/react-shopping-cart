@@ -3,15 +3,17 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../redux/store';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { logout } from '../redux/slices/authSlice';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Header: React.FC = () => {
   const cartItemCount = useSelector((state: RootState) => state.cart.items.length);
   const user = useSelector((state: RootState) => state.auth.user);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     dispatch(logout());
+    navigate('/login');
   };
 
   return (
@@ -23,7 +25,7 @@ const Header: React.FC = () => {
           <Nav className="ml-auto">
             {user.role === 'customer' && (
               <Nav.Link as={Link} to="/cart">
-                                Cart ({cartItemCount})
+                Cart ({cartItemCount})
               </Nav.Link>
             )}
             {user.role === 'admin' && (

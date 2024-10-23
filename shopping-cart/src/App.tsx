@@ -7,10 +7,11 @@ import { RootState } from './redux/store';
 import Login from './pages/Login';
 import Inventory from './pages/Inventory';
 import Cart from './pages/Cart';
-import SalesChart from './pages/salesChart';
+import SalesChart from './pages/SalesChart';
 import UserProfile from './pages/UserProfile';
 import Welcome from './pages/Welcome';
 import Store from './pages/Store';
+import NotAuthorized from './pages/NotAuthorized';
 import Header from './components/Header';
 import PrivateRoute from './components/PrivateRoute';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -46,12 +47,12 @@ const App: React.FC = () => {
           path="/profile"
           element={<PrivateRoute component={UserProfile}
             roles={['customer', 'admin']} user={user} />} />
+        <Route path="/not-authorized" element={<NotAuthorized />} />
         <Route path="/" element={homePageElement} />
         <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
     </Router>
   );
 };
-
 
 export default App;
