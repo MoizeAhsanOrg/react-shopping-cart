@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Button, Container, Alert } from 'react-bootstrap';
+import { Form, Button, Container, Alert, Spinner } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { login } from '../redux/slices/authSlice';
 import { authenticateUser } from '../services/mocks/authService';
@@ -9,16 +9,25 @@ const Login: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    const user = authenticateUser(username, password);
-    if (user) {
-      dispatch(login(user));
-      navigate('/');
-    } else {
-      setError('Invalid credentials');
+  const handleLogin = async () => {
+    setLoading(true);
+    setError('');
+    try {
+      const user = await authenticateUser(username, password);
+      if (user) {
+        dispatch(login(user));
+        navigate('/');
+      } else {
+        setError('Invalid credentials');
+      }
+    } catch (err) {
+      setError('An error occurred during login. Please try again.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -34,6 +43,7 @@ const Login: React.FC = () => {
             placeholder="Enter username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            disabled={loading}
           />
         </Form.Group>
 
@@ -44,11 +54,12 @@ const Login: React.FC = () => {
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            disabled={loading}
           />
         </Form.Group>
 
-        <Button variant="primary" onClick={handleLogin} className="mt-4">
-          Login
+        <Button variant="primary" onClick={handleLogin} className="mt-4" disabled={loading}>
+          {loading ? <Spinner animation="border" size="sm" /> : 'Login'}
         </Button>
       </Form>
     </Container>
