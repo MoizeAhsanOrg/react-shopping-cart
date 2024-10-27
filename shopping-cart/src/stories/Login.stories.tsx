@@ -24,6 +24,32 @@ const meta: Meta<typeof Login> = {
       </Provider>
     ),
   ],
+  parameters: {
+    docs: {
+      description: {
+        component: `
+          # Login Page
+
+          This is the Login page component.
+          It is wrapped with Redux Provider and MemoryRouter for state management and routing.
+
+          ## Usage
+
+          \`\`\`jsx
+          <Login />
+          \`\`\`
+
+          ## Props
+
+          The Login component does not take any props.
+
+          ## Redux State
+
+          The component is connected to the Redux store with the \`auth\` slice.
+        `,
+      },
+    },
+  },
 };
 
 export default meta;
