@@ -1,14 +1,16 @@
 import React from 'react';
-import { StoryFn, StoryContext } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import Profile from '../components/Profile';
 import { User } from '../types/User';
 
-export default {
+const meta: Meta<typeof Profile> = {
   title: 'Components/Profile',
   component: Profile,
-} as StoryContext<typeof Profile>;
+};
 
-const Template: StoryFn<typeof Profile> = (args) => <Profile {...args} />;
+export default meta;
+
+type Story = StoryObj<typeof Profile>;
 
 const user: User = {
   username: 'johndoe',
@@ -19,7 +21,25 @@ const user: User = {
   history: ['Item 1', 'Item 2', 'Item 3'],
 };
 
-export const Default = Template.bind({});
-Default.args = {
-  user,
+const admin: User = {
+  username: 'admin',
+  role: 'admin',
+  password: '',
+  name: 'Admin',
+  email: 'admin@example.com',
+  history: ['Item 1', 'Item 2', 'Item 3'],
+};
+
+export const Customer: Story = {
+  args: {
+    user,
+  },
+};
+
+export const Admin: Story = {
+  args: {
+    user: {
+      ...admin,
+    },
+  },
 };
