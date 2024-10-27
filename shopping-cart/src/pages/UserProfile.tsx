@@ -1,9 +1,10 @@
 import React from 'react';
-import { Container, Row, Col, ListGroup } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import { User } from '../types/User';
+import Profile from '../components/Profile'; // Adjust the path as necessary
 
 interface UserProfileProps {
-    user: User;
+  user: User;
 }
 
 const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
@@ -12,15 +13,7 @@ const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
     <Container>
       <Row>
         <Col>
-          <h2>User Profile</h2>
-          <p><strong>Name:</strong> {user.name}</p>
-          <p><strong>Email:</strong> {user.email}</p>
-          <h3>Shopping History</h3>
-          <ListGroup>
-            {user.history.map((item, index) => (
-              <ListGroup.Item key={index}>{item}</ListGroup.Item>
-            ))}
-          </ListGroup>
+          <Profile user={user} />
         </Col>
       </Row>
     </Container>

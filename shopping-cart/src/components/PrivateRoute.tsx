@@ -16,10 +16,17 @@ const PrivateRoute: React.FC<PrivateRouteProps> = (
     user,
     ...rest
   }) => {
-  return user && roles.includes(user.role) ? (
-    <Component {...rest} user={user} />
-  ) : (
-    <Navigate to="/login" />
-  );
+  if (!user) {
+    console.log('NAVIGATING TO LOGIN');
+    return <Navigate to="/login" />;
+  }
+
+  if (!roles.includes(user.role)) {
+    console.log('NAVIGATING TO NOT AUTHORIZED');
+    return <Navigate to="/not-authorized" />;
+  }
+
+  return <Component {...rest} user={user} />;
 };
+
 export default PrivateRoute;
