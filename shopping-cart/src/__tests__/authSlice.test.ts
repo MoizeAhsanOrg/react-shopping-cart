@@ -6,7 +6,6 @@ describe('authSlice', () => {
     username: 'test', password: 'test', role: 'customer',
     name: '',
     email: '',
-    history: []
   };
 
   it('should handle initial state', () => {

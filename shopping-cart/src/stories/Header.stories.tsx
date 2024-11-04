@@ -49,7 +49,6 @@ const defaultArgs: preloadedState = {
       password: '',
       name: 'customer',
       email: 'customer@example.com',
-      history: [],
     },
   },
   cart: {
@@ -68,7 +67,6 @@ const adminArgs: preloadedState = {
       password: '',
       name: 'admin',
       email: 'admin@example.com',
-      history: [],
     },
   },
   cart: {
