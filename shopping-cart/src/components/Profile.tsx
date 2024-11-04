@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col, ListGroup, Card } from 'react-bootstrap';
+import { Container, Row, Col, ListGroup, Card, Button } from 'react-bootstrap';
 import { User } from '../types/User';
 import { ShoppingHistory } from '../types/ShoppingHistory';
 import './Profile.css';
@@ -7,9 +7,10 @@ import './Profile.css';
 interface ProfileProps {
   user: User;
   history: ShoppingHistory[];
+  handleLogout: () => void;
 }
 
-const Profile: React.FC<ProfileProps> = ({ user, history }) => {
+const Profile: React.FC<ProfileProps> = ({ user, history, handleLogout }) => {
   return (
     <Container className="profile-container">
       <Row>
@@ -19,6 +20,13 @@ const Profile: React.FC<ProfileProps> = ({ user, history }) => {
               <Card.Title>User Profile</Card.Title>
               <Card.Text><strong>Name:</strong> {user.name}</Card.Text>
               <Card.Text><strong>Email:</strong> {user.email}</Card.Text>
+              <Button
+                variant="primary"
+                onClick={handleLogout}
+                className="log-out-button"
+              >
+                Log Out
+              </Button>
             </Card.Body>
           </Card>
         </Col>
