@@ -1,4 +1,3 @@
-import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import Profile from '../components/Profile';
 import { User } from '../types/User';
