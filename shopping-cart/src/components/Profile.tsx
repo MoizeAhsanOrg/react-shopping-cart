@@ -1,7 +1,8 @@
 import React from 'react';
-import { Container, Row, Col, ListGroup } from 'react-bootstrap';
+import { Container, Row, Col, ListGroup, Card } from 'react-bootstrap';
 import { User } from '../types/User';
 import { ShoppingHistory } from '../types/ShoppingHistory';
+import './Profile.css';
 
 interface ProfileProps {
   user: User;
@@ -10,28 +11,36 @@ interface ProfileProps {
 
 const Profile: React.FC<ProfileProps> = ({ user, history }) => {
   return (
-    <Container>
+    <Container className="profile-container">
       <Row>
-        <Col>
-          <h2>User Profile</h2>
-          <p><strong>Name:</strong> {user.name}</p>
-          <p><strong>Email:</strong> {user.email}</p>
+        <Col md={4}>
+          <Card className="profile-card">
+            <Card.Body>
+              <Card.Title>User Profile</Card.Title>
+              <Card.Text><strong>Name:</strong> {user.name}</Card.Text>
+              <Card.Text><strong>Email:</strong> {user.email}</Card.Text>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col md={8}>
           {user.role !== 'admin' && (
-            <>
-              <h3>Shopping History</h3>
-              <ListGroup>
-                {history.map((historyItem: ShoppingHistory, index) => (
-                  <ListGroup.Item key={index}>
-                    <strong>Date:</strong> {historyItem.date}
-                    <ul>
-                      {historyItem.items.map((item, itemIndex) => (
-                        <li key={itemIndex}>{item}</li>
-                      ))}
-                    </ul>
-                  </ListGroup.Item>
-                ))}
-              </ListGroup>
-            </>
+            <Card className="history-card">
+              <Card.Body>
+                <Card.Title>Shopping History</Card.Title>
+                <ListGroup variant="flush">
+                  {history.map((historyItem: ShoppingHistory, index) => (
+                    <ListGroup.Item key={index}>
+                      <strong>Date:</strong> {historyItem.date}
+                      <ul>
+                        {historyItem.items.map((item, itemIndex) => (
+                          <li key={itemIndex}>{item}</li>
+                        ))}
+                      </ul>
+                    </ListGroup.Item>
+                  ))}
+                </ListGroup>
+              </Card.Body>
+            </Card>
           )}
         </Col>
       </Row>
