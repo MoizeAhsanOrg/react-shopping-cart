@@ -11,5 +11,5 @@ export interface ShoppingHistory {
     date: string;
     items: ShoppingHistoryItem[];
     totalAmount: Order['total'];
-    status: 'pending' | 'completed' | 'cancelled';
+    status: 'pending' | 'completed' | 'cancelled' | 'shipped';
 }

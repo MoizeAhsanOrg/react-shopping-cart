@@ -1,12 +1,13 @@
 import React from 'react';
-import { Container, Row, Col, ListGroup, Card, Button } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { User } from '../types/User';
-import { ShoppingHistory } from '../types/ShoppingHistory';
+import { ShoppingHistory as ShoppingHistoryType } from '../types/ShoppingHistory';
+import ShoppingHistory from './ShoppingHistory';
 import './Profile.css';
 
 interface ProfileProps {
   user: User;
-  history: ShoppingHistory[];
+  history: ShoppingHistoryType[];
   handleLogout: () => void;
 }
 
@@ -32,29 +33,7 @@ const Profile: React.FC<ProfileProps> = ({ user, history, handleLogout }) => {
         </Col>
         <Col md={8}>
           {user.role !== 'admin' && (
-            <Card className="history-card">
-              <Card.Body>
-                <Card.Title>Shopping History</Card.Title>
-                <ListGroup variant="flush">
-                  {history.map((historyItem: ShoppingHistory, index) => (
-                    <ListGroup.Item key={index}>
-                      <strong>Order ID:</strong> {historyItem.orderId}<br />
-                      <strong>Date:</strong> {historyItem.date}<br />
-                      <strong>Total Amount:</strong> ${historyItem.totalAmount}<br />
-                      <strong>Status:</strong> {historyItem.status}
-                      <ul>
-                        {historyItem.items.map((item, itemIndex) => (
-                          <li key={itemIndex}>
-                            <strong>Item:</strong> {item.name} - Quantity: {item.quantity} - 
-                            Total: ${item.totalAmount}
-                          </li>
-                        ))}
-                      </ul>
-                    </ListGroup.Item>
-                  ))}
-                </ListGroup>
-              </Card.Body>
-            </Card>
+            <ShoppingHistory history={history} />
           )}
         </Col>
       </Row>
