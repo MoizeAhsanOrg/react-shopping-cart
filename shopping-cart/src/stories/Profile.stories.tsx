@@ -21,12 +21,52 @@ const user: User = {
 };
 const historyItems: Array<ShoppingHistory> = [
   {
+    orderId: 'ORD123',
     date: '2023-01-01',
-    items: ['Item 1', 'Item 2'],
+    items: [
+      {
+        id: 0,
+        name: 'Item 1',
+        price: 10.0,
+        quantity: 2,
+        totalAmount: 20.0,
+        category: 'Category 1',
+      },
+      {
+        id: 1,
+        name: 'Item 2',
+        price: 15.0,
+        quantity: 1,
+        totalAmount: 15.0,
+        category: 'Category 2',
+      },
+    ],
+    totalAmount: 35.0,
+    status: 'completed',
   },
   {
+    orderId: 'ORD124',
     date: '2023-02-01',
-    items: ['Item 3', 'Item 4'],
+    items: [
+      {
+        id: 0,
+        name: 'Item 3',
+        price: 20.0,
+        quantity: 1,
+        totalAmount: 20.0,
+        category: 'Category 1',
+      },
+      {
+        id: 1,
+        name: 'Item 4',
+        price: 25.0,
+        quantity: 2,
+        totalAmount: 50.0,
+        category: 'Category 2',
+      },
+    ],
+    totalAmount: 70.0,
+    status: 'pending',
   },
 ];
 

@@ -38,10 +38,16 @@ const Profile: React.FC<ProfileProps> = ({ user, history, handleLogout }) => {
                 <ListGroup variant="flush">
                   {history.map((historyItem: ShoppingHistory, index) => (
                     <ListGroup.Item key={index}>
-                      <strong>Date:</strong> {historyItem.date}
+                      <strong>Order ID:</strong> {historyItem.orderId}<br />
+                      <strong>Date:</strong> {historyItem.date}<br />
+                      <strong>Total Amount:</strong> ${historyItem.totalAmount}<br />
+                      <strong>Status:</strong> {historyItem.status}
                       <ul>
                         {historyItem.items.map((item, itemIndex) => (
-                          <li key={itemIndex}>{item}</li>
+                          <li key={itemIndex}>
+                            <strong>Item:</strong> {item.name} - Quantity: {item.quantity} - 
+                            Total: ${item.totalAmount}
+                          </li>
                         ))}
                       </ul>
                     </ListGroup.Item>
