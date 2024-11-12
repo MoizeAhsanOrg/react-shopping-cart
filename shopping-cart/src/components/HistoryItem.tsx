@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { ListGroup } from 'react-bootstrap';
+import { Card, ListGroup } from 'react-bootstrap';
 import { ShoppingHistory } from '../types/ShoppingHistory';
 
 interface HistoryItemProps {
@@ -9,20 +8,26 @@ interface HistoryItemProps {
 
 const HistoryItem: React.FC<HistoryItemProps> = ({ historyItem }) => {
   return (
-    <ListGroup.Item>
-      <strong>Order ID:</strong> {historyItem.orderId}<br />
-      <strong>Date:</strong> {historyItem.date}<br />
-      <strong>Total Amount:</strong> ${historyItem.totalAmount}<br />
-      <strong>Status:</strong> {historyItem.status}
-      <ul>
-        {historyItem.items.map((item, itemIndex) => (
-          <li key={itemIndex}>
-            <strong>Item:</strong> {item.name} - Quantity: {item.quantity} - 
-            Total: ${item.totalAmount}
-          </li>
-        ))}
-      </ul>
-    </ListGroup.Item>
+    <Card className="mb-3">
+      <Card.Header>
+        <strong>Order ID:</strong> {historyItem.orderId}
+      </Card.Header>
+      <Card.Body>
+        <Card.Title>Total Amount: ${historyItem.totalAmount}</Card.Title>
+        <Card.Subtitle className="mb-2 text-muted">
+          Date: {historyItem.date} | Status: {historyItem.status}
+        </Card.Subtitle>
+        <ListGroup variant="flush">
+          {historyItem.items.map((item) => (
+            <ListGroup.Item key={item.id}>
+              <strong>{item.name}</strong><br />
+              Quantity: {item.quantity}<br />
+              Total: ${item.totalAmount}
+            </ListGroup.Item>
+          ))}
+        </ListGroup>
+      </Card.Body>
+    </Card>
   );
 };
 
