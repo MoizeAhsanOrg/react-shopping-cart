@@ -5,4 +5,6 @@ export interface Item {
     category: string;
     price: number;
     stock: number;
+    /** Optional image path */
+    image?: string;
 }

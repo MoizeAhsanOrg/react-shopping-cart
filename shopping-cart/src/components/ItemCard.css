@@ -1,0 +1,32 @@
+/* shopping-cart/src/components/ItemCard.css */
+.item-card {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.item-card:hover {
+    transform: scale(1.05);
+}
+
+.item-card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.item-card-text {
+    font-size: 1rem;
+    color: #555;
+}
+
+.item-card-button {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.item-card-img {
+    min-height: 150px;
+    max-height: 300px;
+    object-fit: cover;
+}
