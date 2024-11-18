@@ -7,6 +7,8 @@ interface PrivateRouteProps extends Omit<typeof Route, 'element'> {
   component: React.ComponentType<any>;
   roles: string[];
   user: User | null;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [key: string]: any;
 }
 
 const PrivateRoute: React.FC<PrivateRouteProps> = (

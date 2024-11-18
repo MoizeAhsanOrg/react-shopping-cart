@@ -1,25 +1,40 @@
 import React from 'react';
-import { Container, Row, Col, ListGroup } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { User } from '../types/User';
+import { ShoppingHistory as ShoppingHistoryType } from '../types/ShoppingHistory';
+import ShoppingHistory from './ShoppingHistory';
+import './Profile.css';
 
 interface ProfileProps {
   user: User;
+  history: ShoppingHistoryType[];
+  handleLogout: () => void;
 }
 
-const Profile: React.FC<ProfileProps> = ({ user }) => {
+const Profile: React.FC<ProfileProps> = ({ user, history, handleLogout }) => {
   return (
-    <Container>
+    <Container className="profile-container">
       <Row>
-        <Col>
-          <h2>User Profile</h2>
-          <p><strong>Name:</strong> {user.name}</p>
-          <p><strong>Email:</strong> {user.email}</p>
-          <h3>Shopping History</h3>
-          <ListGroup>
-            {user.history.map((item, index) => (
-              <ListGroup.Item key={index}>{item}</ListGroup.Item>
-            ))}
-          </ListGroup>
+        <Col md={4}>
+          <Card className="profile-card">
+            <Card.Body>
+              <Card.Title>User Profile</Card.Title>
+              <Card.Text><strong>Name:</strong> {user.name}</Card.Text>
+              <Card.Text><strong>Email:</strong> {user.email}</Card.Text>
+              <Button
+                variant="primary"
+                onClick={handleLogout}
+                className="log-out-button"
+              >
+                Log Out
+              </Button>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col md={8}>
+          {user.role !== 'admin' && (
+            <ShoppingHistory history={history} />
+          )}
         </Col>
       </Row>
     </Container>

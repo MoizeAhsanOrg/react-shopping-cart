@@ -1,25 +1,18 @@
-import { Meta, StoryObj } from '@storybook/react';
-import Profile from '../components/Profile';
-import { User } from '../types/User';
-import { ShoppingHistory } from '../types/ShoppingHistory';
 
-const meta: Meta<typeof Profile> = {
-  title: 'Pages/Profile',
-  component: Profile,
+import { Meta, StoryObj } from '@storybook/react';
+import ShoppingHistory from '../components/ShoppingHistory';
+import { ShoppingHistory as ShoppingHistoryType } from '../types/ShoppingHistory';
+
+const meta: Meta<typeof ShoppingHistory> = {
+  title: 'Components/History/ShoppingHistory',
+  component: ShoppingHistory,
 };
 
 export default meta;
 
-type Story = StoryObj<typeof Profile>;
+type Story = StoryObj<typeof ShoppingHistory>;
 
-const user: User = {
-  username: 'johndoe',
-  role: 'customer',
-  password: '',
-  name: 'John Doe',
-  email: 'johndoe@example.com',
-};
-const historyItems: Array<ShoppingHistory> = [
+const historyItems: ShoppingHistoryType[] = [
   {
     orderId: 'ORD123',
     date: '2023-01-01',
@@ -70,26 +63,8 @@ const historyItems: Array<ShoppingHistory> = [
   },
 ];
 
-
-const admin: User = {
-  username: 'admin',
-  role: 'admin',
-  password: '',
-  name: 'Admin',
-  email: 'admin@example.com',
-};
-
-export const Customer: Story = {
+export const Default: Story = {
   args: {
-    user,
     history: historyItems,
-  },
-};
-
-export const Admin: Story = {
-  args: {
-    user: {
-      ...admin,
-    },
   },
 };

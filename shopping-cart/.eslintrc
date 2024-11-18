@@ -22,7 +22,7 @@
         ], // Matches indent_size for TypeScript and JavaScript files
         "linebreak-style": [
             "error",
-            "unix"
+            "windows"
         ], // Matches end_of_line
         "quotes": [
             "error",

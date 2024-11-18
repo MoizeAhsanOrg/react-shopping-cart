@@ -4,5 +4,4 @@ export interface User {
     role: 'admin' | 'customer';
     name: string;
     email: string;
-    history: string[];
 }

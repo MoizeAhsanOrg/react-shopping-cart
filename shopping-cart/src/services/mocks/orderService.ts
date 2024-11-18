@@ -5,7 +5,7 @@ export const getOrders = (): Order[] => {
   return orders;
 };
 
-export const getOrderById = (id: number): Order | null => {
+export const getOrderById = (id: string): Order | null => {
   return orders.find(order => order.id === id) || null;
 };
 
