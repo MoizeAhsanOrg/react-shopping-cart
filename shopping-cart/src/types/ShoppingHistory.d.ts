@@ -1,4 +1,3 @@
-import { Order } from './Order';
 import { Item } from './Item';
 
 export interface ShoppingHistoryItem extends Omit<Item, 'stock'> {
