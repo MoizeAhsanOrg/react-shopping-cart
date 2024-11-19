@@ -14,7 +14,7 @@ const ItemCard: React.FC<ItemCardProps> = ({ item, onAddToCart }) => {
     <Card className="item-card mb-4">
       <Card.Img
         variant="top"
-        src={item.image || defaultImage}
+        src={item.image ?? defaultImage}
         alt={item.name}
         className="item-card-img" />
       <Card.Body>
