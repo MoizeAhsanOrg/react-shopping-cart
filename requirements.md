@@ -1,6 +1,6 @@
 # ReactJS Assignment
 
-## Create a shopping cart application with the following features:
+## Create a shopping cart application with the following features
 
 - Add/edit/delete items in inventory.
 - Categorize inventory (e.g., Electronics, Food).
