@@ -14,6 +14,7 @@ type Story = StoryObj<typeof HistoryItem>;
 
 const historyItem: ShoppingHistory = {
   orderId: 'ORD125',
+  userId: 'customer',
   date: '2023-03-01',
   items: [
     {

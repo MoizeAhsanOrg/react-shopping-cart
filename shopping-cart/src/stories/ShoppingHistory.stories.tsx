@@ -15,6 +15,7 @@ type Story = StoryObj<typeof ShoppingHistory>;
 const historyItems: ShoppingHistoryType[] = [
   {
     orderId: 'ORD123',
+    userId: 'customer',
     date: '2023-01-01',
     items: [
       {
@@ -38,7 +39,8 @@ const historyItems: ShoppingHistoryType[] = [
     status: 'completed',
   },
   {
-    orderId: 'ORD124',
+    orderId: 'ORD456',
+    userId: 'customer',
     date: '2023-02-01',
     items: [
       {

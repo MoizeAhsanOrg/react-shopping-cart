@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { RootState } from './redux/store';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState, AppDispatch } from './redux/store';
 
 // Import pages
 import Login from './pages/Login';
@@ -14,12 +14,23 @@ import Store from './pages/Store';
 import NotAuthorized from './pages/NotAuthorized';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import { fetchShoppingHistory } from './redux/thunks/shoppingHistoryThunks';
 import PrivateRoute from './components/PrivateRoute';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'; // Import the CSS file
 
 const App: React.FC = () => {
   const user = useSelector((state: RootState) => state.auth.user);
+  const shoppingHistory = useSelector((state: RootState) => state.shoppingHistory.history);
+  const dispatch: AppDispatch = useDispatch();
+
+  useEffect(() => {
+    if (user) {
+      dispatch(fetchShoppingHistory(user.username));
+    }
+  }, [user, dispatch]);
+
+
   let homePageElement;
   if (user) {
     if (user.role === 'admin') {
@@ -50,7 +61,7 @@ const App: React.FC = () => {
             <Route
               path="/profile"
               element={<PrivateRoute component={UserProfile}
-                roles={['customer', 'admin']} user={user} />} />
+                roles={['customer', 'admin']} user={user} history={shoppingHistory}/>} />
             <Route path="/not-authorized" element={<NotAuthorized />} />
             <Route path="/" element={homePageElement} />
             <Route path="*" element={<Navigate to="/login" />} />

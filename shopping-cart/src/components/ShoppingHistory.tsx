@@ -7,7 +7,7 @@ interface ShoppingHistoryProps {
   history: ShoppingHistoryType[];
 }
 
-const ShoppingHistory: React.FC<ShoppingHistoryProps> = ({ history }) => {
+const ShoppingHistory: React.FC<ShoppingHistoryProps> = ({ history = [] }) => {
   return (
     <Card className="history-card">
       <Card.Body>

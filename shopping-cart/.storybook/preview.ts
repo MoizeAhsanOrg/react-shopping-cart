@@ -1,6 +1,8 @@
 import type { Preview } from "@storybook/react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+process.env.REACT_APP_ENV = 'storybook';
+
 const preview: Preview = {
   parameters: {
     controls: {
