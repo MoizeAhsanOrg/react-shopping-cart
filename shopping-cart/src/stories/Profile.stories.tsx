@@ -22,6 +22,7 @@ const user: User = {
 const historyItems: Array<ShoppingHistory> = [
   {
     orderId: 'ORD123',
+    userId: 'customer',
     date: '2023-01-01',
     items: [
       {
@@ -46,6 +47,7 @@ const historyItems: Array<ShoppingHistory> = [
   },
   {
     orderId: 'ORD124',
+    userId: 'customer',
     date: '2023-02-01',
     items: [
       {

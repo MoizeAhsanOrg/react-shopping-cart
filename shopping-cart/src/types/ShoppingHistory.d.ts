@@ -7,9 +7,15 @@ export interface ShoppingHistoryItem extends Omit<Item, 'stock'> {
 }
 
 export interface ShoppingHistory {
-    orderId: Order['id'];
-    date: string;
-    items: ShoppingHistoryItem[];
-    totalAmount: Order['total'];
-    status: 'pending' | 'completed' | 'cancelled' | 'shipped';
+  orderId: string;
+  userId: string;
+  date: string;
+  items: ShoppingHistoryItem[];
+  totalAmount: number;
+  status: 'pending' | 'completed' | 'cancelled' | 'shipped';
+}
+
+export interface ShoppingHistoryAPIResponse {
+  data: ShoppingHistory[];
+  error: string;
 }
