@@ -1,9 +1,15 @@
-name: GitHub Pages
+name: Build and Deploy
 
 on:
     push:
-        branches:
-            - 12-create-a-build-and-deploy-pipeline
+        tags:
+            - "v*.*.*" # Matches version tags like v1.0.0
+    workflow_dispatch:
+        inputs:
+            version_tag:
+                description: "Tag to deploy"
+                required: true
+                default: "v1.0.0"
 
 jobs:
     deploy:
@@ -36,7 +42,7 @@ jobs:
 
             - name: Deploy
               uses: peaceiris/actions-gh-pages@v4
-              if: ${{ github.ref == 'refs/heads/main' }}
+              if: startsWith(github.ref, 'refs/tags/v')
               with:
                   github_token: ${{ secrets.GITHUB_TOKEN }}
                   publish_dir: ./shopping-cart/build
