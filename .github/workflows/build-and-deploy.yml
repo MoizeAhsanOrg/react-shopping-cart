@@ -4,6 +4,9 @@ on:
     push:
         tags:
             - "v*.*.*" # Matches version tags like v1.0.0
+    pull_request:
+        branches:
+        - '**'
     workflow_dispatch:
         inputs:
             version_tag:
@@ -12,7 +15,7 @@ on:
                 default: "v1.0.0"
 
 jobs:
-    deploy:
+    build-and-deploy:
         runs-on: ubuntu-22.04
         permissions:
             contents: write
