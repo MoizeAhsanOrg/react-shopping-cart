@@ -40,14 +40,16 @@ jobs:
       - run: npm ci
         working-directory: shopping-cart
 
-      - name: Configure Git
-        run: |
-          git config --global user.email "moize.ahsan@10pearls.com"
-          git config --global user.name "MoizeAhsan-10P"
+      # - name: Configure Git
+      #   run: |
+      #     git config --global user.email "moize.ahsan@10pearls.com"
+      #     git config --global user.name "MoizeAhsan-10P"
 
       - name: Deploy
         if: startsWith(github.ref, 'refs/tags/v')
-        working-directory: shopping-cart
-        run: npm run deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        working-directory: shopping-cart
+        run: |
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          npm run deploy
