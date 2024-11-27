@@ -19,7 +19,7 @@ const config: StorybookConfig = {
     check: true,
     checkOptions: {},
   },
-  staticDirs: ["..\\public"],
+  staticDirs: ["../public"],
   docs: {
     defaultName: 'Documentation',
   },
